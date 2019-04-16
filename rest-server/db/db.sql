@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS bookshopWithJAXRSdb;
 USE bookshopWithJAXRSdb;
 
-DROP table books;
+DROP table bookauthor;
 
 CREATE TABLE books(
     bookID INT AUTO_INCREMENT,
@@ -33,8 +33,8 @@ CREATE TABLE bookAuthor(
     authorID INT,
     
     CONSTRAINT BookAuthor_PK  PRIMARY KEY (bookAuthorID),
-    CONSTRAINT BookAuthor_Books_FK FOREIGN KEY (bookID) REFERENCES Books(bookID),
-    CONSTRAINT BookAuthor_Authors_FK FOREIGN KEY (authorID) REFERENCES Authors(authorID)
+    CONSTRAINT BookAuthor_Books_FK FOREIGN KEY (bookID) REFERENCES Books(bookID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT BookAuthor_Authors_FK FOREIGN KEY (authorID) REFERENCES Authors(authorID)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -134,5 +134,26 @@ INSERT INTO books(bookTitle, bookDescription, bookPrice, bookImgPath, bookPublis
 INSERT INTO books(bookTitle, bookDescription, bookPrice, bookImgPath, bookPublishedDate,  bookLink)
 	VALUES('To Save Earth', 'The life of everyone on Earth depended on hich they had long ago lost!',
 				20.00, 'to_save_earth.jpg', '1963/10/08', 'https://www.gutenberg.org/ebooks/53059');
+
+INSERT INTO bookauthor(bookID, authorID) VALUES(1,1);
+INSERT INTO bookauthor(bookID, authorID) VALUES(2,2);
+INSERT INTO bookauthor(bookID, authorID) VALUES(3,3);
+INSERT INTO bookauthor(bookID, authorID) VALUES(4,4);
+INSERT INTO bookauthor(bookID, authorID) VALUES(5,5);
+INSERT INTO bookauthor(bookID, authorID) VALUES(6,4);
+INSERT INTO bookauthor(bookID, authorID) VALUES(7,6);
+INSERT INTO bookauthor(bookID, authorID) VALUES(8,7);
+INSERT INTO bookauthor(bookID, authorID) VALUES(9,8);
+INSERT INTO bookauthor(bookID, authorID) VALUES(10,9);
+INSERT INTO bookauthor(bookID, authorID) VALUES(11,9);
+INSERT INTO bookauthor(bookID, authorID) VALUES(12,10);
+INSERT INTO bookauthor(bookID, authorID) VALUES(13,11);
+INSERT INTO bookauthor(bookID, authorID) VALUES(14,12);
+INSERT INTO bookauthor(bookID, authorID) VALUES(15,13);
+INSERT INTO bookauthor(bookID, authorID) VALUES(16,14);
+INSERT INTO bookauthor(bookID, authorID) VALUES(17,8);
+INSERT INTO bookauthor(bookID, authorID) VALUES(18,15);
+INSERT INTO bookauthor(bookID, authorID) VALUES(19,16);
+INSERT INTO bookauthor(bookID, authorID) VALUES(20,17);
 
 			
