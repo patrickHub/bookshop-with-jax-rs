@@ -9,6 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,14 +21,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author PatrickHub
  */
 @XmlRootElement
-public class Book implements Serializable{
+public class Book  implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    private static final String IMAGE_LOCATION = "/images/covers/";
+    
     private int id;
+    @Size(min=10, max=50)
     private String title;
+    @Size(min=20, max=500)
     private String description;
     private List<Author> authors;
+    @DecimalMin("0.00")
     private Float price;
+    @NotNull
     private String imgPath;
+    @Pattern(regexp="^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")
     private String link;
+    @Past
     private Date published;
 
     public Book() {

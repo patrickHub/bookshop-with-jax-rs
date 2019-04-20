@@ -24,6 +24,13 @@ public interface AuthorRepository {
     Author saveAuthor(Author author);
     
     /**
+     * update author to db
+     * @param author author to update
+     * @return persisted author
+     */
+    Author updateAuthor(Author author);
+    
+    /**
      * delete an "id" author from db.
      * 
      * @param id id of the author

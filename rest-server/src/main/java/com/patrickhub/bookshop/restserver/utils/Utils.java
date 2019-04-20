@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author PatrickHub
  */
 public class Utils {
-     public static Date formatDate(String str) {
+     public static Date formatStringToDate(String str) {
         Date date = null;
         try {
                 String pattern = "yyyy-MM-dd";
@@ -26,5 +26,12 @@ public class Utils {
             Logger.getLogger(Utils.class.getName()).severe(e.getMessage());
         }
         return date;
+    }
+     public static String formatDateToString(Date date) {
+        String str = null;
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        str =  format.format(str);
+        return str;
     }
 }

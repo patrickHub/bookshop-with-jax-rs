@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Author implements Serializable{
-    private int id;
+    private int id; 
     private String firstName;
     private String lastName;
     private Date birthdate;

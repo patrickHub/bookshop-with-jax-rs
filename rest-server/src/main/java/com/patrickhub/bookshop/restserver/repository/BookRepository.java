@@ -24,6 +24,13 @@ public interface BookRepository {
     Book saveBook(Book book);
     
     /**
+     * update a book 
+     * @param book book to update
+     * @return persisted book
+     */
+    Book updateBook(Book book);
+    
+    /**
      * delete an "id" book from db.
      * 
      * @param id id of the book
