@@ -27,17 +27,24 @@ public class Book  implements Serializable{
     private static final String IMAGE_LOCATION = "/images/covers/";
     
     private int id;
+    @NotNull
     @Size(min=10, max=50)
     private String title;
+    @NotNull
     @Size(min=20, max=500)
     private String description;
+    @NotNull
     private List<Author> authors;
+    @NotNull
     @DecimalMin("0.00")
     private Float price;
     @NotNull
+    @Size(max=50)
     private String imgPath;
+    @NotNull
     @Pattern(regexp="^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")
     private String link;
+    @NotNull
     @Past
     private Date published;
 

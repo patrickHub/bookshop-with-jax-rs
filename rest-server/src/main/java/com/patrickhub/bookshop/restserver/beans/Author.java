@@ -8,6 +8,10 @@ package com.patrickhub.bookshop.restserver.beans;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,9 +21,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Author implements Serializable{
     private int id; 
+    @NotNull
+    @Size(min=1, max=30)
     private String firstName;
+    @NotNull
+    @Size(min=1, max=30)
     private String lastName;
+    @NotNull
+    @Past
     private Date birthdate;
+    @Size(max=50)
+    @Pattern(regexp="^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")
     private String blogURL;
 
     public Author() {
