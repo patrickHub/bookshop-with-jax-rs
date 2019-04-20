@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author PatrickHub
  */
 @XmlRootElement
-public class Book  implements Serializable{
+public class Book extends Hypermedia  implements Serializable{
     
     private static final long serialVersionUID = 1L;
     private static final String IMAGE_LOCATION = "/images/covers/";

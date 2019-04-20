@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author PatrickHub
  */
 @XmlRootElement
-public class Author implements Serializable{
+public class Author extends Hypermedia implements Serializable{
     private int id; 
     @NotNull
     @Size(min=1, max=30)
