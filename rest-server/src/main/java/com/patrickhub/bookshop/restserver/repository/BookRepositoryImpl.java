@@ -181,8 +181,8 @@ public class BookRepositoryImpl implements BookRepository{
             // write sql update
             String sql = "UPDATE books SET bookTitle = ?, bookDescription=?, "
                             + "bookPrice = ?, bookImgPath = ?,  "
-                            + "bookLink = ?, bookPublishedDat = ?"
-                            + "WHERE bookID = ?";
+                            + "bookLink = ?, bookPublishedDate = ?"
+                            + "WHERE bookID = ?;";
        
             // get prepared statement
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -204,6 +204,8 @@ public class BookRepositoryImpl implements BookRepository{
 		
             book.setImgPath(API_URL + IMAGE_LOCATION + book.getImgPath());
             // update authors of the current book to db
+            int size = 0;
+            size = book.getAuthors().size();
             book.getAuthors().stream().map((author) ->{
                 authorRepository.updateAuthor(author);
                 return author;

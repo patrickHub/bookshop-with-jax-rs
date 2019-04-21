@@ -66,8 +66,8 @@ public class BookResource {
                       .path(getClass())
                       .path(getClass(), "updateBook")
                       .build(book.getId()))
-                      .rel("delete")
-                      .type("DELETE")
+                      .rel("update")
+                      .type("PUT")
                       .build();
               
               LinkResource selfLink = new  LinkResource(self);
@@ -105,8 +105,8 @@ public class BookResource {
                 .path(getClass())
                 .path(getClass(), "updateBook")
                 .build(book.getId()))
-                .rel("delete")
-                .type("DELETE")
+                .rel("update")
+                .type("PUT")
                 .build();
 
         LinkResource selfLink = new  LinkResource(self);
@@ -144,8 +144,8 @@ public class BookResource {
                       .path(getClass())
                       .path(getClass(), "updateBook")
                       .build(persistedBook.getId()))
-                      .rel("delete")
-                      .type("DELETE")
+                      .rel("update")
+                      .type("PUT")
                       .build();
               
             LinkResource selfLink = new  LinkResource(self);
@@ -198,8 +198,8 @@ public class BookResource {
                   .path(getClass())
                   .path(getClass(), "updateBook")
                   .build(persistedBook.getId()))
-                  .rel("delete")
-                  .type("DELETE")
+                  .rel("update")
+                  .type("PUT")
                   .build();
 
         LinkResource selfLink = new  LinkResource(self);

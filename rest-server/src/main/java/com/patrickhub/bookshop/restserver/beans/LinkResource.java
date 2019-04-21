@@ -24,7 +24,7 @@ public class LinkResource {
     
     public LinkResource(Link link) {
         this.rel = link.getRel();
-        this.type = link.getTitle();
+        this.type = link.getType();
         this.uri = link.getUri();
     }
     

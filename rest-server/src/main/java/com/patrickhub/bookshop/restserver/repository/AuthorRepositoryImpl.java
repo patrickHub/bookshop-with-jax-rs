@@ -157,7 +157,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
             // write sql update
             String sql = "UPDATE authors SET authorFirstName = ?, authorLastName = ?, "
                             + "authorBirthdate = ?, authorBlogURL = ?"
-                            + "WHERE authorID = ?";
+                            + "WHERE authorID = ?;";
        
             // get prepared statement
             PreparedStatement statement = connection.prepareStatement(sql);

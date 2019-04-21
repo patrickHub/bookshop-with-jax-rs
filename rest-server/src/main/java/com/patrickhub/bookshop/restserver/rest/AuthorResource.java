@@ -64,8 +64,8 @@ public class AuthorResource {
                     .path(getClass())
                     .path(getClass(), "updateAuthor")
                     .build(author.getId()))
-                    .rel("delete")
-                    .type("DELETE")
+                    .rel("update")
+                    .type("PUT")
                     .build();
             
             LinkResource selfLink = new  LinkResource(self);
@@ -103,8 +103,8 @@ public class AuthorResource {
                     .path(getClass())
                     .path(getClass(), "updateAuthor")
                     .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
+                    .rel("update")
+                    .type("PUT")
                     .build();
             
             LinkResource selfLink = new  LinkResource(self);
@@ -143,8 +143,8 @@ public class AuthorResource {
                     .path(getClass())
                     .path(getClass(), "updateAuthor")
                     .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
+                    .rel("update")
+                    .type("PUT")
                     .build();
             
             LinkResource selfLink = new  LinkResource(self);
@@ -197,8 +197,8 @@ public class AuthorResource {
                     .path(getClass())
                     .path(getClass(), "updateAuthor")
                     .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
+                    .rel("update")
+                    .type("PUT")
                     .build();
             
             LinkResource selfLink = new  LinkResource(self);
