@@ -37,7 +37,7 @@ public class BookRepositoryImpl implements BookRepository{
     @EJB
     private BookAuthorRepository bookAuthorRepository;
     
-    private static final String API_URL = "http://localhost/rest-server";
+    private static final String API_URL = "http://localhost:8080/rest_server";
     private static final String IMAGE_LOCATION = "/images/covers/";
 
     @Override

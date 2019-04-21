@@ -1,60 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    
+      <ui:composition template="page_common.xhtml">
+        <ui:define name="title">Bookshop-Client</ui:define>
+        <ui:define name="content">
+            <h:form id="form">
+                <p:carousel value="#{bookCatalogue.books}" headerText="Catalogue" var="book" itemStyle="text-align:center"
+                        responsive="true">
+                    <p:panelGrid columns="1" style="height: 300px;width:100%;margin:10px 10px" columnClasses="label,value" layout="grid"
+                                 styleClass="ui-panelgrid-blank">
+                        <f:facet name="header">
+                            <h:outputLink target="_blank" value="#{book.imgPath}">
+                                <p:graphicImage title="#{book.title}" url="#{book.imgPath}" width="100" height="125"
+                                            alt="#{book.title}"/>
+                            </h:outputLink>
+                        </f:facet>
+                        <h:outputLink>
+                            <f:param name="id" value="#{book.id}"/>
+                            <h:outputText value="#{book.title}"/>
+                        </h:outputLink>
 
-    <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Bookshop-with-JAX-RS</title>
-            </f:facet>
-            <style>
-                body{
-                    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bookshop-landing-page-image.jpg");
-                    width:100%;
-                    height:100%;
-                    background-repeat: no-repeat; 
-                    background-attachment:fixed; 
-                    
-                }
-                div{
-                    position: absolute;
-                    top: 35%;
-                    bottom: 50%;
-                    left: 25%;
-                    margin: auto;
-                    text-align: center;
-                }
-                .main_title{
-                    font-family: "Montserrat","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
-                    color: rgb(255, 255, 255);
-                    font-weight: 900;
-                }
-                .intro-divider {
-                    width: 400px;
-                    border-top: 2px solid #f8f8f8;
-                    border-bottom: 2px solid rgba(0,0,0,0.2);
-                }
-                .shadowme {
-                    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-                }
-            </style>
-        </h:head>
+                        <h:outputText value="#{book.price}">
+                            <f:convertNumber type="currency" currencySymbol="$" pattern="#0.00" minFractionDigits="2"/>
+                        </h:outputText>
 
-        <h:body>
-           <div>
-                <hr class="intro-divider"/>
-                <h1 class="main_title">Bookstore implementation-Powered by JAX-RS</h1>
-                <h2><a class="shadowme" style="color:orange;text-decoration:none;" href="client.xhtml">Client</a>| 
-                    <a class="shadowme" style="color:orange;text-decoration:none;" href="admin.xhtml">Admin</a></h2>
-                <hr class="intro-divider"/>
-            </div>
+                    </p:panelGrid>
 
-        </h:body>
-
-    </f:view>
+                <f:facet name="footer">
+                    In total there are #{fn:length(bookBean.books)} books.
+                </f:facet>
+            </p:carousel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>
-
