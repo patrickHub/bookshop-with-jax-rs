@@ -1,14 +1,102 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Bookshop-with-JAX-RS</title>
+            </f:facet>
+            <style>
+                body{
+                    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bookshop-landing-page-image.jpg");
+                    width:100%;
+                    height:100%;
+                    background-repeat: no-repeat; 
+                    background-attachment:fixed; 
+                    
+                }
+                .main_title_blog{
+                    position: absolute;
+                    top: 22%;
+                    bottom: 50%;
+                    left: 30%;
+                    margin: auto;
+                    text-align: center;
+                }
+                .main_title{
+                    font-family: "Montserrat","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+                    color: rgb(255, 255, 255);
+                    font-weight: 900;
+                }
+                .intro-divider {
+                    width: 600px;
+                    border-top: 2px solid #f8f8f8;
+                    border-bottom: 2px solid rgba(0,0,0,0.2);
+                }
+                div.footer {
+                        position: absolute;
+                        top: 68%;
+                        left: 25%;
+                        right: 25%;
+                        color: wheat;
+                        text-align: center;
+                }
+                div.my_3{
+                    text-decoration: none;
+                }
+                a.shadowme{
+                    color: rgb(255,255,255);
+                    border: 2px solid rgb(255,255,255);
+                    background-color: #2974d4;
+                    text-decoration: none;
+                    padding-bottom:13px;
+                    padding-left:40px;
+                    padding-right:40px;
+                    padding-top:13px;
+                    font-weight: 700;
+                    font-family: Poppins,sans-serif;
+                    line-height: 1.7em;
+                    text-transform: uppercase;
+                    text-align: center;
+                    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+                    
+                }
+            </style>
+        </h:head>
+
+        <h:body>
+           <div class="main_title_blog">
+                <hr class="intro-divider"/>
+                <h1 class="main_title">Bookshop-Powered by JAX-RS</h1>
+                <h2><a class="shadowme" href="client.xhtml">Client</a>
+                    <a class="shadowme" href="admin.xhtml">Admin</a></h2>
+                <hr class="intro-divider"/>
+            </div>
+            
+            <!--footer-->
+            <div class="footer">
+                <h2 >information board</h2>
+
+                <p>Bookshop is � PatricHub project to implement<strong>JAX-RS API</strong>.
+                    You can <a class="my_3" href="https://github.com/patrickHub/bookshop-with-jax-rs">download</a> and customize it for yourself!</p>
+                <p>Please visit or read my <a class="my_3" href="https://github.com/patrickHub/bookshop-with-jax-rs">Github profile </a>for getting started guide.</p>
+
+                <p> Bookshop is a fictitious brand created by PatrickHub solely for the purpose of training. 
+                        All products and people associated with Bookshop are also fictitious. Any resemblance to real 
+                        brands, products, or people is purely coincidental. Information provided about the product is 
+                        also fictitious and should not be construed to be representative of actual products on the market
+                        in a similar product category.
+                </p>
+	   
+	  </div>
+
+        </h:body>
+
+    </f:view>
 </html>
 

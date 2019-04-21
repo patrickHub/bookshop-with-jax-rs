@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Bookshop-with-JAX-RS</title>
+            </f:facet>
+            <style>
+                body{
+                    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/bookshop-landing-page-image.jpg");
+                    width:100%;
+                    height:100%;
+                    background-repeat: no-repeat; 
+                    background-attachment:fixed; 
+                    
+                }
+                div{
+                    position: absolute;
+                    top: 35%;
+                    bottom: 50%;
+                    left: 25%;
+                    margin: auto;
+                    text-align: center;
+                }
+                .main_title{
+                    font-family: "Montserrat","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+                    color: rgb(255, 255, 255);
+                    font-weight: 900;
+                }
+                .intro-divider {
+                    width: 400px;
+                    border-top: 2px solid #f8f8f8;
+                    border-bottom: 2px solid rgba(0,0,0,0.2);
+                }
+                .shadowme {
+                    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+                }
+            </style>
+        </h:head>
+
+        <h:body>
+           <div>
+                <hr class="intro-divider"/>
+                <h1 class="main_title">Bookstore implementation-Powered by JAX-RS</h1>
+                <h2><a class="shadowme" style="color:orange;text-decoration:none;" href="client.xhtml">Client</a>| 
+                    <a class="shadowme" style="color:orange;text-decoration:none;" href="admin.xhtml">Admin</a></h2>
+                <hr class="intro-divider"/>
+            </div>
+
+        </h:body>
+
+    </f:view>
+</html>
+
