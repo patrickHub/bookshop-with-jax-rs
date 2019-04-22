@@ -46,31 +46,9 @@ public class AuthorResource {
     public Response getAllAuthor(){
         List<Author> authors = authorRepository.getAll();
         authors.forEach((author) -> {
-            Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "getAuthorById")
-                    .build(author.getId()))
-                    .rel("self")
-                    .type("GET")
-                    .build();
-            Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "deleteAuthor")
-                    .build(author.getId()))
-                    .rel("delete")
-                    .type("DELETE")
-                    .build();
-            Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "updateAuthor")
-                    .build(author.getId()))
-                    .rel("update")
-                    .type("PUT")
-                    .build();
-            
-            LinkResource selfLink = new  LinkResource(self);
-            LinkResource deleteLink = new  LinkResource(delete);
-            LinkResource updateLink = new  LinkResource(update);
+            LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getAuthorById", author.getId(), "self", "GET");
+            LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteAuthor", author.getId(), "delete", "DELETE");
+            LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateAuthor", author.getId(), "udpate", "PUT");
             
             author.addLink(selfLink);
             author.addLink(deleteLink);
@@ -85,36 +63,14 @@ public class AuthorResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveAuthor(@Valid Author author){
         Author persistedAuthor = authorRepository.saveAuthor(author);
-        Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "getAuthorById")
-                    .build(persistedAuthor.getId()))
-                    .rel("self")
-                    .type("GET")
-                    .build();
-            Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "deleteAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
-                    .build();
-            Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "updateAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("update")
-                    .type("PUT")
-                    .build();
-            
-            LinkResource selfLink = new  LinkResource(self);
-            LinkResource deleteLink = new  LinkResource(delete);
-            LinkResource updateLink = new  LinkResource(update);
-            
-            persistedAuthor.addLink(selfLink);
-            persistedAuthor.addLink(deleteLink);
-            persistedAuthor.addLink(updateLink);
-            return Response.status(Response.Status.CREATED).entity(persistedAuthor).build();
+        LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getAuthorById", persistedAuthor.getId(), "self", "GET");
+        LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteAuthor", persistedAuthor.getId(), "delete", "DELETE");
+        LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateAuthor", persistedAuthor.getId(), "udpate", "PUT");
+
+        persistedAuthor.addLink(selfLink);
+        persistedAuthor.addLink(deleteLink);
+        persistedAuthor.addLink(updateLink);
+        return Response.status(Response.Status.CREATED).entity(persistedAuthor).build();
     }
     
     
@@ -125,31 +81,9 @@ public class AuthorResource {
         Optional<Author> author = authorRepository.getByid(id);
         if(author.isPresent()){
             Author persistedAuthor = author.get();
-            Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "getAuthorById")
-                    .build(persistedAuthor.getId()))
-                    .rel("self")
-                    .type("GET")
-                    .build();
-            Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "deleteAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
-                    .build();
-            Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "updateAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("update")
-                    .type("PUT")
-                    .build();
-            
-            LinkResource selfLink = new  LinkResource(self);
-            LinkResource deleteLink = new  LinkResource(delete);
-            LinkResource updateLink = new  LinkResource(update);
+            LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getAuthorById", id, "self", "GET");
+            LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteAuthor", id, "delete", "DELETE");
+            LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateAuthor", id, "udpate", "PUT");
             
             persistedAuthor.addLink(selfLink);
             persistedAuthor.addLink(deleteLink);
@@ -179,35 +113,13 @@ public class AuthorResource {
     public Response updateAuthor(Author author, final @PathParam("id") int id){
         author.setId(id);
         Author persistedAuthor = authorRepository.updateAuthor(author);
-        Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "getAuthorById")
-                    .build(persistedAuthor.getId()))
-                    .rel("self")
-                    .type("GET")
-                    .build();
-            Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "deleteAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("delete")
-                    .type("DELETE")
-                    .build();
-            Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                    .path(getClass())
-                    .path(getClass(), "updateAuthor")
-                    .build(persistedAuthor.getId()))
-                    .rel("update")
-                    .type("PUT")
-                    .build();
-            
-            LinkResource selfLink = new  LinkResource(self);
-            LinkResource deleteLink = new  LinkResource(delete);
-            LinkResource updateLink = new  LinkResource(update);
-            
-            persistedAuthor.addLink(selfLink);
-            persistedAuthor.addLink(deleteLink);
-            persistedAuthor.addLink(updateLink);
+        LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getAuthorById", id, "self", "GET");
+        LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteAuthor", id, "delete", "DELETE");
+        LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateAuthor", id, "udpate", "PUT");
+
+        persistedAuthor.addLink(selfLink);
+        persistedAuthor.addLink(deleteLink);
+        persistedAuthor.addLink(updateLink);
         return Response.ok(persistedAuthor).build();
     }
     

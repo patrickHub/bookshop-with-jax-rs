@@ -5,6 +5,7 @@
  */
 package com.patrickhub.bookshop.restserver.repository;
 
+import com.patrickhub.bookshop.restserver.beans.Author;
 import com.patrickhub.bookshop.restserver.beans.Book;
 import java.sql.Connection;
 import java.util.Date;
@@ -165,6 +166,7 @@ public class BookRepositoryImpl implements BookRepository{
                 book.setImgPath(API_URL + IMAGE_LOCATION + set.getString("bookImgPath"));
                 book.setPublished((new Date(set.getDate("bookPublishedDate").getTime())));
                 book.setLink(set.getString("bookLink"));
+                book.setAuthors(getBookAuthors(id));
             }
             
         } catch (SQLException ex) {
@@ -217,6 +219,39 @@ public class BookRepositoryImpl implements BookRepository{
         }
         return book;
 
+    }
+    
+     private List<Author> getBookAuthors(int id) {
+        Connection connection = dbConnection.getConnection();
+        List<Author> authors = new ArrayList<>();
+        Author author = null;
+        
+       try {
+            // write sql query
+           String sql = "SELECT * FROM authors "
+                        + "INNER JOIN bookAuthor "
+                         + "ON authors.authorID = bookAuthor.authorID "
+                         + "WHERE bookAuthor.bookID = ?;";
+            // get prepared statement
+            PreparedStatement statement =  connection.prepareStatement(sql);
+            statement.setInt(1, id);
+           
+            // execute sql query
+            ResultSet set = statement.executeQuery();
+            while(set.next()){
+                author = new Author();
+                author.setId(set.getInt("authorID"));
+                author.setFirstName(set.getString("authorFirstName"));
+                author.setLastName(set.getString("authorLastName"));
+                author.setBlogURL(set.getString("authorBlogURL"));
+                author.setBirthdate(new Date(set.getDate("authorBirthdate").getTime()));
+                authors.add(author);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BookRepositoryImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return authors;
     }
     
     

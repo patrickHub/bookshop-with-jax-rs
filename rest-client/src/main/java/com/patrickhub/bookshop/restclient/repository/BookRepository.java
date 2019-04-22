@@ -5,8 +5,11 @@
  */
 package com.patrickhub.bookshop.restclient.repository;
 
+import com.patrickhub.bookshop.restclient.beans.Author;
 import com.patrickhub.bookshop.restclient.beans.Book;
+import com.patrickhub.bookshop.restclient.beans.LinkResource;
 import java.util.List;
+import javax.json.JsonArray;
 
 /**
  *
@@ -50,4 +53,20 @@ public interface BookRepository {
      * @return Optional<Book>
      */
     Book getByid(int id);
+    
+    /**
+     * extract authors from the jsonArray.
+     * 
+     * @param jsonArray the jsonArray
+     * @return the list of link
+     */
+    List<Author> extractAuthors(JsonArray jsonArray);
+    
+    /**
+     * extract linkResource from jsonArray.
+     * 
+     * @param jsonArray the jsonArray
+     * @return list of author
+     */
+    List<LinkResource> extractLinks(JsonArray jsonArray);
 }

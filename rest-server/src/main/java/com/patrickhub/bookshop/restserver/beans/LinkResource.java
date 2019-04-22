@@ -7,6 +7,7 @@ package com.patrickhub.bookshop.restserver.beans;
 
 import java.net.URI;
 import javax.ws.rs.core.Link;
+import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -70,6 +71,18 @@ public class LinkResource {
      */
     public void setUri(URI uri) {
         this.uri = uri;
+    }
+    
+    public static LinkResource createLinkRResource(UriInfo uriInfo, Class classPath , String resourceMethod, int id, String rel, String type){
+        Link link = Link.fromUri(uriInfo.getBaseUriBuilder()
+                  .path(classPath)
+                  .path(classPath, resourceMethod)
+                  .build(id))
+                  .rel(rel)
+                  .type(type)
+                  .build();
+       
+        return new  LinkResource(link);
     }
     
     

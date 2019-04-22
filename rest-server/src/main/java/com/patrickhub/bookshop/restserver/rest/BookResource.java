@@ -46,37 +46,16 @@ public class BookResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllBooks(){
-          List<Book> books = bookRepository.getAll();
-          books.forEach((book) -> {
-               Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "getBookById")
-                      .build(book.getId()))
-                      .rel("self")
-                      .type("GET")
-                      .build();
-              Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "deleteBook")
-                      .build(book.getId()))
-                      .rel("delete")
-                      .type("DELETE")
-                      .build();
-              Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "updateBook")
-                      .build(book.getId()))
-                      .rel("update")
-                      .type("PUT")
-                      .build();
+        List<Book> books = bookRepository.getAll();
+        books.forEach((book) -> {
+            LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getBookById", book.getId(), "self", "GET");
+            LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteBook", book.getId(), "delete", "DELETE");
+            LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateBook", book.getId(), "udpate", "PUT");
+
               
-              LinkResource selfLink = new  LinkResource(self);
-              LinkResource deleteLink = new  LinkResource(delete);
-              LinkResource updateLink = new  LinkResource(update);
-              
-              book.addLink(selfLink);
-              book.addLink(deleteLink);
-              book.addLink(updateLink);
+            book.addLink(selfLink);
+            book.addLink(deleteLink);
+            book.addLink(updateLink);
         });
         GenericEntity<List<Book>> bookWrapper = new GenericEntity<List<Book>>(books){};
         return Response.ok(bookWrapper).build();
@@ -87,32 +66,10 @@ public class BookResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response saveBook(@Valid Book book){
        Book persistedBook = bookRepository.saveBook(book);
-       Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "getBookById")
-                      .build(book.getId()))
-                      .rel("self")
-                      .type("GET")
-                      .build();
-        Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                .path(getClass())
-                .path(getClass(), "deleteBook")
-                .build(book.getId()))
-                .rel("delete")
-                .type("DELETE")
-                .build();
-        Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                .path(getClass())
-                .path(getClass(), "updateBook")
-                .build(book.getId()))
-                .rel("update")
-                .type("PUT")
-                .build();
-
-        LinkResource selfLink = new  LinkResource(self);
-        LinkResource deleteLink = new  LinkResource(delete);
-        LinkResource updateLink = new  LinkResource(update);
-
+       LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getBookById", persistedBook.getId(), "self", "GET");
+        LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteBook", persistedBook.getId(), "delete", "DELETE");
+        LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateBook", persistedBook.getId(), "udpate", "PUT");
+        
         persistedBook.addLink(selfLink);
         persistedBook.addLink(deleteLink);
         persistedBook.addLink(updateLink);
@@ -126,31 +83,11 @@ public class BookResource {
         Optional<Book> book = bookRepository.getByid(id);
         if(book.isPresent()){
             Book persistedBook = book.get();
-            Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "getBookById")
-                      .build(persistedBook.getId()))
-                      .rel("self")
-                      .type("GET")
-                      .build();
-            Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "deleteBook")
-                      .build(persistedBook.getId()))
-                      .rel("delete")
-                      .type("DELETE")
-                      .build();
-            Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                      .path(getClass())
-                      .path(getClass(), "updateBook")
-                      .build(persistedBook.getId()))
-                      .rel("update")
-                      .type("PUT")
-                      .build();
+            
               
-            LinkResource selfLink = new  LinkResource(self);
-            LinkResource deleteLink = new  LinkResource(delete);
-            LinkResource updateLink = new  LinkResource(update);
+            LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getBookById", id, "self", "GET");
+            LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteBook", id, "delete", "DELETE");
+            LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateBook", id, "udpate", "PUT");
 
             persistedBook.addLink(selfLink);
             persistedBook.addLink(deleteLink);
@@ -180,31 +117,9 @@ public class BookResource {
     public Response updateBook(@Valid Book book, final @PathParam("id") int id){
         book.setId(id);
         Book persistedBook = bookRepository.updateBook(book);
-        Link self = Link.fromUri(uriInfo.getBaseUriBuilder()
-                  .path(getClass())
-                  .path(getClass(), "getBookById")
-                  .build(persistedBook.getId()))
-                  .rel("self")
-                  .type("GET")
-                  .build();
-        Link delete = Link.fromUri(uriInfo.getBaseUriBuilder()
-                  .path(getClass())
-                  .path(getClass(), "deleteBook")
-                  .build(persistedBook.getId()))
-                  .rel("delete")
-                  .type("DELETE")
-                  .build();
-        Link update = Link.fromUri(uriInfo.getBaseUriBuilder()
-                  .path(getClass())
-                  .path(getClass(), "updateBook")
-                  .build(persistedBook.getId()))
-                  .rel("update")
-                  .type("PUT")
-                  .build();
-
-        LinkResource selfLink = new  LinkResource(self);
-        LinkResource deleteLink = new  LinkResource(delete);
-        LinkResource updateLink = new  LinkResource(update);
+        LinkResource selfLink =  LinkResource.createLinkRResource(uriInfo, getClass(), "getBookById", id, "self", "GET");
+        LinkResource deleteLink = LinkResource.createLinkRResource(uriInfo, getClass(),"deleteBook", id, "delete", "DELETE");
+        LinkResource updateLink = LinkResource.createLinkRResource(uriInfo, getClass(), "updateBook", id, "udpate", "PUT");
 
         persistedBook.addLink(selfLink);
         persistedBook.addLink(deleteLink);

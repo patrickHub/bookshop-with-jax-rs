@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <ui:composition template="/WEB-INF/template/page_common.xhtml">
+        <ui:define name="title">Book Detail</ui:define>
+        <ui:define name="content">
+            
+            <f:metadata>
+                <f:viewParam name="id" value="#{bookManager.id}"/>
+                <f:viewAction action="#{bookManager.onLoad}"/>
+            </f:metadata>
+            
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    
+                    <h:outputLink target="_blank" value="#{bookManager.book.imgPath}">
+                        <p:graphicImage title="#{bookManager.book.title}" url="#{bookManager.book.imgPath}"
+                                        width="200" height="200" alt="#{bookManager.book.title}"/>
+                    </h:outputLink>
+                </f:facet>
+                
+                <h:outputText value="Title"/>
+                <h:outputText value="#{bookManager.book.title}"/>
+               
+                <h:outputText value="By"/>
+                <h:outputLink target="_blank" value="#{bookManager.book.authors.get(0).blogURL}">
+                    <h:outputText value="#{bookManager.book.authors.get(0).firstName} #{bookManager.book.authors.get(0).lastName}"/>
+                </h:outputLink>
+                
+                <h:outputText value="Published"/>
+                <h:outputText value="#{bookManager.book.published}"/>
+                
+                <h:outputText value="Description"/>
+                <h:outputText value="#{bookManager.book.description}" styleClass="ui-fixed-width"/>
+
+                <h:outputText value="Price"/>
+                    <h:outputText value="#{bookManager.book.price}">
+                    <f:convertNumber type="currency" currencySymbol="$" pattern="#0.00" minFractionDigits="2"/>
+                </h:outputText>
+                 
+                <h:outputText value="Download"/>
+                    <h:outputLink target="_blank" value="#{bookManager.book.link}">
+                    <h:outputText value="Click Here"/>
+                </h:outputLink>
+                
+            </p:panelGrid>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -6,12 +6,10 @@
 package com.patrickhub.bookshop.restclient.beans;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,13 +43,12 @@ public class Book extends Hypermedia  implements Serializable{
     @Pattern(regexp="^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")
     private String link;
     @NotNull
-    @Past
-    private Date published;
+    private String published;
 
     public Book() {
     }
     
-    public Book(int id, String title, String description, List<Author> authors, Float price, String imgPath, String link, Date published) {
+    public Book(int id, String title, String description, List<Author> authors, Float price, String imgPath, String link, String published) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -222,14 +219,14 @@ public class Book extends Hypermedia  implements Serializable{
     /**
      * @return the published
      */
-    public Date getPublished() {
+    public String getPublished() {
         return published;
     }
 
     /**
      * @param published the published to set
      */
-    public void setPublished(Date published) {
+    public void setPublished(String published) {
         this.published = published;
     }
     

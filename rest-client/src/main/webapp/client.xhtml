@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
     
-      <ui:composition template="page_common.xhtml">
+      <ui:composition template="/WEB-INF/template/page_common.xhtml">
         <ui:define name="title">Bookshop-Client</ui:define>
         <ui:define name="content">
             <h:form id="form">
@@ -19,7 +19,7 @@
                                             alt="#{book.title}"/>
                             </h:outputLink>
                         </f:facet>
-                        <h:outputLink>
+                        <h:outputLink value="book-detail.xhtml">
                             <f:param name="id" value="#{book.id}"/>
                             <h:outputText value="#{book.title}"/>
                         </h:outputLink>
@@ -31,7 +31,7 @@
                     </p:panelGrid>
 
                 <f:facet name="footer">
-                    In total there are #{fn:length(bookBean.books)} books.
+                    In total there are #{fn:length(bookCatalogue.books)} books.
                 </f:facet>
             </p:carousel>
             </h:form>

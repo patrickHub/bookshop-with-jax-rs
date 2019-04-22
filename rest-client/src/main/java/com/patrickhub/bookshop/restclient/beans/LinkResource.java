@@ -5,7 +5,6 @@
  */
 package com.patrickhub.bookshop.restclient.beans;
 
-import java.net.URI;
 import javax.ws.rs.core.Link;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,14 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class LinkResource {
     private String rel;
     private String type;
-    private URI uri;
+    private String uri;
 
     public LinkResource() {}
     
     public LinkResource(Link link) {
         this.rel = link.getRel();
         this.type = link.getType();
-        this.uri = link.getUri();
+        this.uri = link.getUri().toString();
     }
     
     
@@ -61,14 +60,14 @@ public class LinkResource {
     /**
      * @return the uri
      */
-    public URI getUri() {
+    public String getUri() {
         return uri;
     }
 
     /**
      * @param uri the uri to set
      */
-    public void setUri(URI uri) {
+    public void setUri(String uri) {
         this.uri = uri;
     }
     
