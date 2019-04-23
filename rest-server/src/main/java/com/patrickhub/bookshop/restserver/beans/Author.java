@@ -6,7 +6,7 @@
 package com.patrickhub.bookshop.restserver.beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -29,7 +29,7 @@ public class Author extends Hypermedia implements Serializable{
     private String lastName;
     @NotNull
     @Past
-    private Date birthdate;
+    private LocalDate birthdate;
     @Size(max=50)
     @Pattern(regexp="^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")
     private String blogURL;
@@ -37,7 +37,7 @@ public class Author extends Hypermedia implements Serializable{
     public Author() {
     }
 
-    public Author(int id, String firstName, String lastName, Date birthdate, String blogURL) {
+    public Author(int id, String firstName, String lastName, LocalDate birthdate, String blogURL) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -156,14 +156,14 @@ public class Author extends Hypermedia implements Serializable{
     /**
      * @return the birthdate
      */
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
     /**
      * @param birthdate the birthdate to set
      */
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
     

@@ -8,7 +8,7 @@ package com.patrickhub.bookshop.restserver.repository;
 import com.patrickhub.bookshop.restserver.beans.Author;
 import com.patrickhub.bookshop.restserver.beans.Book;
 import java.sql.Connection;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +58,7 @@ public class BookRepositoryImpl implements BookRepository{
             statement.setFloat(3, book.getPrice());
             statement.setString(4, book.getImgPath().length() == 0 ? IMAGE_LOCATION.concat("no_image.png"): book.getImgPath());
             statement.setString(5, book.getLink());
-            statement.setDate(6, new java.sql.Date(book.getPublished().getTime()));
+            statement.setDate(6, Date.valueOf(book.getPublished()));
            
             
             // execute insert query
@@ -132,7 +132,7 @@ public class BookRepositoryImpl implements BookRepository{
                 book.setDescription(set.getString("bookDescription"));
                 book.setPrice(set.getFloat("bookPrice"));
                 book.setImgPath(API_URL + IMAGE_LOCATION + set.getString("bookImgPath"));
-                book.setPublished(new Date(set.getDate("bookPublishedDate").getTime()));
+                book.setPublished(set.getDate("bookPublishedDate").toLocalDate());
                 book.setLink(set.getString("bookLink"));
                 books.add(book);
             }
@@ -164,7 +164,7 @@ public class BookRepositoryImpl implements BookRepository{
                 book.setDescription(set.getString("bookDescription"));
                 book.setPrice(set.getFloat("bookPrice"));
                 book.setImgPath(API_URL + IMAGE_LOCATION + set.getString("bookImgPath"));
-                book.setPublished((new Date(set.getDate("bookPublishedDate").getTime())));
+                book.setPublished((set.getDate("bookPublishedDate").toLocalDate()));
                 book.setLink(set.getString("bookLink"));
                 book.setAuthors(getBookAuthors(id));
             }
@@ -194,7 +194,7 @@ public class BookRepositoryImpl implements BookRepository{
             statement.setFloat(3, book.getPrice());
             statement.setString(4, book.getImgPath().length() == 0 ? IMAGE_LOCATION.concat("no_image.png"): book.getImgPath());
             statement.setString(5, book.getLink());
-            statement.setDate(6, new java.sql.Date(book.getPublished().getTime()));
+            statement.setDate(6, Date.valueOf(book.getPublished()));
             statement.setInt(7, book.getId());
            
             // execute update query
@@ -244,7 +244,7 @@ public class BookRepositoryImpl implements BookRepository{
                 author.setFirstName(set.getString("authorFirstName"));
                 author.setLastName(set.getString("authorLastName"));
                 author.setBlogURL(set.getString("authorBlogURL"));
-                author.setBirthdate(new Date(set.getDate("authorBirthdate").getTime()));
+                author.setBirthdate((set.getDate("authorBirthdate").toLocalDate()));
                 authors.add(author);
             }
             

@@ -7,12 +7,12 @@ package com.patrickhub.bookshop.restserver.repository;
 
 import com.patrickhub.bookshop.restserver.beans.Author;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -45,7 +45,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
             // set parameters
             statement.setString(1, author.getFirstName());
             statement.setString(2, author.getLastName());
-            statement.setDate(3, new java.sql.Date(author.getBirthdate().getTime()));
+            statement.setDate(3, Date.valueOf(author.getBirthdate()));
             statement.setString(4, author.getBlogURL());
             
             // execute insert query
@@ -110,7 +110,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
                 author.setFirstName(set.getString("authorFirstName"));
                 author.setLastName(set.getString("authorLastName"));
                 author.setBlogURL(set.getString("authorBlogURL"));
-                author.setBirthdate(new Date(set.getDate("authorBirthdate").getTime()));
+                author.setBirthdate(set.getDate("authorBirthdate").toLocalDate());
                 authors.add(author);
             }
             
@@ -140,7 +140,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
                 author.setFirstName(set.getString("authorFirstName"));
                 author.setLastName(set.getString("authorLastName"));
                 author.setBlogURL(set.getString("authorBlogURL"));
-                author.setBirthdate(new Date(set.getDate("authorBirthdate").getTime()));
+                author.setBirthdate(set.getDate("authorBirthdate").toLocalDate());
             }
             
         } catch (SQLException ex) {
@@ -164,7 +164,7 @@ public class AuthorRepositoryImpl implements AuthorRepository{
             // set parameters
             statement.setString(1, author.getFirstName());
             statement.setString(2, author.getLastName());
-            statement.setDate(3, new java.sql.Date(author.getBirthdate().getTime()));
+            statement.setDate(3, Date.valueOf(author.getBirthdate()));
             statement.setString(4, author.getBlogURL());
             statement.setInt(5, author.getId());
             

@@ -6,7 +6,7 @@
 package com.patrickhub.bookshop.restserver.beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.DecimalMin;
@@ -46,12 +46,12 @@ public class Book extends Hypermedia  implements Serializable{
     private String link;
     @NotNull
     @Past
-    private Date published;
+    private LocalDate published;
 
     public Book() {
     }
     
-    public Book(int id, String title, String description, List<Author> authors, Float price, String imgPath, String link, Date published) {
+    public Book(int id, String title, String description, List<Author> authors, Float price, String imgPath, String link, LocalDate published) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -222,14 +222,14 @@ public class Book extends Hypermedia  implements Serializable{
     /**
      * @return the published
      */
-    public Date getPublished() {
+    public LocalDate getPublished() {
         return published;
     }
 
     /**
      * @param published the published to set
      */
-    public void setPublished(Date published) {
+    public void setPublished(LocalDate published) {
         this.published = published;
     }
     
